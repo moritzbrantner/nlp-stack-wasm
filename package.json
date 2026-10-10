@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "test": "bun test --max-concurrency=2 tests",
+    "verify:git-install": "bun scripts/verify-git-install.ts"
+  }
+}
