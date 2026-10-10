@@ -41,8 +41,17 @@ function onPath(command: string): boolean {
   }
 }
 
+function wasmPackVersion(command: string): string | undefined {
+  try {
+    return execFileSync(command, ["--version"], { encoding: "utf8" }).trim().split(/\s+/).at(-1);
+  } catch {
+    return undefined;
+  }
+}
+
+// Only the pinned wasm-pack is used, so one commit of this package builds the same glue everywhere.
 function wasmPack(): string {
-  if (onPath("wasm-pack")) return "wasm-pack";
+  if (wasmPackVersion("wasm-pack") === WASM_PACK_VERSION) return "wasm-pack";
   const cacheHome = process.env.XDG_CACHE_HOME ?? path.join(homedir(), ".cache");
   const root = path.join(cacheHome, "nlp-stack-wasm", `wasm-pack-${WASM_PACK_VERSION}`);
   const binary = path.join(root, "bin", process.platform === "win32" ? "wasm-pack.exe" : "wasm-pack");
