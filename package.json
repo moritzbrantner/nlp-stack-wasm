@@ -1,0 +1,37 @@
+{
+  "name": "@moritzbrantner/nlp-stack-wasm",
+  "version": "0.1.0",
+  "description": "text-core-wasm and text-index-wasm from moritzbrantner/nlp-stack, installable from git by commit.",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "nlpStack": {
+    "repository": "https://github.com/moritzbrantner/nlp-stack",
+    "commit": "1ea22b3dd802e79444ab355968066390f21cfcd8"
+  },
+  "exports": {
+    "./text-core-wasm": {
+      "types": "./text-core-wasm/index.d.ts",
+      "import": "./text-core-wasm/index.js",
+      "default": "./text-core-wasm/index.js"
+    },
+    "./text-index-wasm": {
+      "types": "./text-index-wasm/index.d.ts",
+      "import": "./text-index-wasm/index.js",
+      "default": "./text-index-wasm/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "text-core-wasm",
+    "text-index-wasm",
+    "scripts/build.ts",
+    "scripts/prepare-git-install.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "bun scripts/build.ts",
+    "prepare": "bun scripts/prepare-git-install.ts",
+    "test": "bun test --max-concurrency=2 tests",
+    "verify:git-install": "bun scripts/verify-git-install.ts"
+  }
+}

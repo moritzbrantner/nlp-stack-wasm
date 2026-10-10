@@ -1,1 +1,4 @@
 node_modules/
+pkg/
+/text-core-wasm/index.d.ts
+/text-index-wasm/index.d.ts
