@@ -57,5 +57,15 @@ bun run test               # package tests against the pinned upstream APIs
 bun run verify:git-install -- --local  # clean consumer: git install, Bun and headless-browser bundle
 ```
 
+### Source mode
+
+When `NLP_STACK_SOURCE_DIR` is set (coding-tooling source mode, source-deps schema v5 `upstreams`),
+`build` and `prepare` build both packages from that local nlp-stack checkout and do not fetch from
+GitHub. The directory must be the top level of a git checkout whose `HEAD` is `nlpStack.commit`;
+otherwise the build fails before doing any work. A relative path resolves against the current
+directory. Cargo writes its usual `target/` in the checkout; nothing else there changes.
+`<subpath>/pkg/SOURCE` then reads `<repository>#<commit> (local checkout <dir>)`. Unset or empty
+keeps the fetch build.
+
 `bun run verify:git-install` without `--local` installs the pushed `HEAD` from GitHub. Set
 `NLP_STACK_DIR` to a local nlp-stack clone to read upstream files offline.

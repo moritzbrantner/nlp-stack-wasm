@@ -25,6 +25,7 @@
     "text-core-wasm",
     "text-index-wasm",
     "scripts/build.ts",
+    "scripts/nlp-stack-source.ts",
     "scripts/prepare-git-install.ts",
     "README.md"
   ],
